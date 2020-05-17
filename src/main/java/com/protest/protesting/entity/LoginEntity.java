@@ -7,4 +7,5 @@ import lombok.Setter;
 public class LoginEntity {
     private String email;
     private String password;
+
 }
