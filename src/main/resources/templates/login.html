@@ -39,7 +39,7 @@
                 <input type="text" id="user_id" placeholder="ID">
                 <input type="password" id="user_passwd" placeholder="Password">
             </div>
-            <input type="button" id="login">
+            <input type="button" id="login" value="Login">
         </div>
     </div>
 </body>
@@ -53,12 +53,12 @@
             console.log(JSON.stringify(userData));
 
             $.ajax({
-                url:"",
-                method:"get",
+                url:"http://localhost:8080/login",
+                method:"post",
                 contentType : "application/json",
                 data: JSON.stringify(userData),
-                success : function (e) {
-                    alert(e);
+                success : function (request, status, error) {
+                    alert("code:" + request.status + "\n" + "message:"+request.message + "\n" + "error:"+request.error);
                     //로그인 성공했을 때 행동
                 },
                 error:function(request, status, error){

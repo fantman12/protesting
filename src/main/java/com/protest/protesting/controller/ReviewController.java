@@ -39,33 +39,54 @@ public class ReviewController {
         return ResponseEntity.ok().body("success");
     }
 
-    @PostMapping("/getToken")
+    @PostMapping("/login")
     public Object getToken(@RequestBody LoginEntity loginEntity, HttpServletRequest request){
-        if(loginEntity.getEmail().equals("test@example.com") && loginEntity.getPassword().equals("1234")){
 
-            try {
-                accountEntity.setName(loginEntity.getEmail());
-                accountEntity = accountMapper.getUserByName(accountEntity);
-            } catch (NullPointerException e) {
-                Date getDate = new Date();
 
-                ApiResponseEntity message = new ApiResponseEntity(getDate,
-                        HttpStatus.BAD_REQUEST.value(),
-                        e.toString(),
-                        "회원 정보가 존재하지 않습니다.",
-                        request.getServletPath());
+        try {
+            if (loginEntity.getEmail().equals("test@example.com") && loginEntity.getPassword().equals("1234")) {
 
-                return message;
+                try {
+                    accountEntity.setName(loginEntity.getEmail());
+                    accountEntity = accountMapper.getUserByName(accountEntity);
+                } catch (NullPointerException e) {
+                    Date getDate = new Date();
+
+                    ApiResponseEntity message = new ApiResponseEntity(getDate,
+                            HttpStatus.BAD_REQUEST.value(),
+                            e.toString(),
+                            "회원 정보가 존재하지 않습니다.",
+                            request.getServletPath());
+
+                    System.out.println(message);
+
+
+                    return message;
+                }
+
+                if (ObjectUtils.isEmpty(accountEntity)) {
+                    return null;
+                }
+
+                Long id = 1L;
+                String name = accountEntity.getName();
+                return jwtUtils.createToken(id, name);
             }
+        } catch (NullPointerException e) {
+            Date getDate = new Date();
 
-            if (ObjectUtils.isEmpty(accountEntity)) {
-                return null;
-            }
+            ApiResponseEntity message = new ApiResponseEntity(getDate,
+                    HttpStatus.BAD_REQUEST.value(),
+                    e.toString(),
+                    "회원 정보가 존재하지 않습니다.",
+                    request.getServletPath());
 
-            Long id = 1L;
-            String name = accountEntity.getName();
-            return jwtUtils.createToken(id,name);
+            System.out.println(message);
+
+
+            return message;
         }
+
         return null;
     }
 

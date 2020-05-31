@@ -34,26 +34,20 @@ public class HelloSpringBootController {
         return accountMapper.getUser(id);
     }
 
-    @GetMapping("/targetPing")
-    public void pubPing() {
+    @GetMapping("/targetPing/{seq}")
+    public void pubPing(@PathVariable("seq") String seq) {
         Jedis jedis = new RedisUtil().getInstance();
-        jedis.publish("tping", "one");
+        jedis.publish("tping", seq);
 
         jedis.close();
     }
 
-    @GetMapping("/targetPong")
-    public void subPong() {
+    @GetMapping("/tesing/hget/{channel}/{key}")
+    public Object testingData(@PathVariable("channel") String channel, @PathVariable("key") String key) {
         Jedis jedis = new RedisUtil().getInstance();
 
-        jedis.subscribe(new JedisPubSub() {
-        @Override
-        public void onMessage(String channel, String message) {
-            System.out.println(channel);
-            System.out.println(message);
-        }}, "tping");
+        String hashData = jedis.hget(channel, key);
 
-        jedis.close();
+        return hashData;
     }
-
 }
