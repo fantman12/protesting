@@ -61,9 +61,10 @@
                     alert(e);
                     //로그인 성공했을 때 행동
                 },
-                error : function (e) {
-                    alert(e.errorDetail);
+                error:function(request, status, error){
+                    alert("code:" + request.status + "\n" + "message:"+request.responseText + "\n" + "error:"+error);
                 }
+
             });
         });
     </script>
