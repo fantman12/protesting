@@ -39,10 +39,32 @@
                 <input type="text" id="user_id" placeholder="ID">
                 <input type="password" id="user_passwd" placeholder="Password">
             </div>
+            <input type="button" id="login">
         </div>
     </div>
 </body>
     <script type="application/javascript">
+        $("#login").on("click", function () {
+            var userData = {};
+            userData.userId = $("#user_id").val();
+            userData.password = $("#user_passwd").val();
 
+            //콘솔에서 입력 값 확인가능
+            console.log(JSON.stringify(userData));
+
+            $.ajax({
+                url:"",
+                method:"get",
+                contentType : "application/json",
+                data: JSON.stringify(userData),
+                success : function (e) {
+                    alert(e);
+                    //로그인 성공했을 때 행동
+                },
+                error : function (e) {
+                    alert(e.errorDetail);
+                }
+            });
+        });
     </script>
 </html>

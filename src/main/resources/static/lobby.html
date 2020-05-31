@@ -73,7 +73,8 @@
 <script type="application/javascript">
 
     (function () {
-        $("#play_match").on("click", searchingMatch);
+        $("#play_match").on("click", searchingMatchUseAjax);
+        //$("#play_match").on("click", searchingMatch);
     })()
 
     //매칭 찾는 함수
@@ -100,6 +101,40 @@
                 }, 1000);
             }
         }, 1000)
+    }
+
+    //매칭 찾는 함수
+    function searchingMatchUseAjax() {
+        //로비 숨기고
+        $(".lobby").hide();
+        $(".match").show();
+
+
+        $.ajax({
+            url:"",
+            method:"get",
+            contentType : "application/json",
+            data: "",
+            success : function (e) {
+                //성공 시
+                showLobby();
+            },
+            error : function (e) {
+                //실패 시
+                alert(e.errorDetail);
+                showLobby();
+            }
+        });
+    }
+
+    function hideLobby() {
+        $(".lobby").hide();
+        $(".match").show();
+    }
+
+    function showLobby() {
+        $(".lobby").show();
+        $(".match").hide();
     }
 
 </script>
