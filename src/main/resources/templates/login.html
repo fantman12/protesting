@@ -46,7 +46,7 @@
     <script type="application/javascript">
         $("#login").on("click", function () {
             var userData = {};
-            userData.userId = $("#user_id").val();
+            userData.email = $("#user_id").val();
             userData.password = $("#user_passwd").val();
 
             //콘솔에서 입력 값 확인가능
@@ -57,7 +57,7 @@
                 method:"post",
                 contentType : "application/json",
                 data: JSON.stringify(userData),
-                success : function (request, status, error) {
+                success : function (request) {
                     alert("code:" + request.status + "\n" + "message:"+request.message + "\n" + "error:"+request.error);
                     //로그인 성공했을 때 행동
                 },

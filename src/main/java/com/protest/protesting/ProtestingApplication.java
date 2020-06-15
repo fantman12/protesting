@@ -14,7 +14,7 @@ import redis.clients.jedis.JedisPubSub;
 
 @SpringBootApplication
 //@MapperScan("com.protest.protesting.mapper")
-public class ProtestingApplication /*implements CommandLineRunner*/ {
+public class ProtestingApplication implements CommandLineRunner {
 
     @Autowired
     private AccountMapper accountMapper;
@@ -24,13 +24,13 @@ public class ProtestingApplication /*implements CommandLineRunner*/ {
 
     public static void main(String[] args) {
         SpringApplication.run(ProtestingApplication.class, args);
-        subPing();
+//        subPing();
     }
 
-//    @Override
-//    public void run(String... args) throws Exception {
-//        System.out.println("Start Time:" + accountMapper.getTime());
-//    }
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("Start Time:" + accountMapper.getTime());
+    }
 
 
     public static void redisConnect() {

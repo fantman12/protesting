@@ -5,5 +5,6 @@
 <configuration>
     <typeAliases>
         <typeAlias alias="AccountEntity" type="com.protest.protesting.entity.AccountEntity"/>
+        <typeAlias alias="User" type="com.protest.protesting.entity.User"/>
     </typeAliases>
 </configuration>

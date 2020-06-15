@@ -6,8 +6,7 @@ import lombok.Setter;
 
 @Getter @Setter
 @AllArgsConstructor
-public class LoginEntity {
-    private String email;
+public class AuthenticationRequest {
+    private String username;
     private String password;
-
 }
