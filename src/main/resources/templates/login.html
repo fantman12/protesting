@@ -46,14 +46,14 @@
     <script type="application/javascript">
         $("#login").on("click", function () {
             var userData = {};
-            userData.email = $("#user_id").val();
+            userData.username = $("#user_id").val();
             userData.password = $("#user_passwd").val();
 
             //콘솔에서 입력 값 확인가능
             console.log(JSON.stringify(userData));
 
             $.ajax({
-                url:"http://localhost:8080/login",
+                url:"http://localhost:8080/user/login",
                 method:"post",
                 contentType : "application/json",
                 data: JSON.stringify(userData),

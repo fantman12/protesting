@@ -52,7 +52,7 @@ public class UserServiceTest {
     public void createUserTest() {
 
 //        userService.deleteUser(user1.getUsername());
-        userService.createUser(user1);
+//        userService.createUser(user1);
 //        User user = userService.readUser(user1.getUsername());
 //        assertThat(user.getUsername(), is(user1.getUsername()));
 //

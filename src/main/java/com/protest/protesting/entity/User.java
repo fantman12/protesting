@@ -18,6 +18,7 @@ public class User implements UserDetails {
     private boolean isCredentialsNonExpired;
     private boolean isEnabled;
     private Collection<? extends GrantedAuthority> authorities;
+    private String roles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

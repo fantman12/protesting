@@ -11,15 +11,15 @@ SELECT authority_name FROM authority WHERE username = #{username}
 </select>
 
     <insert id="createUser" parameterType="User">
-INSERT INTO user (username, password, name, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
-VALUES (#{username}, #{password}, #{name}, #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled})
+INSERT INTO user (username, password, name, roles, isAccountNonExpired, isAccountNonLocked, isCredentialsNonExpired, isEnabled)
+VALUES (#{username}, #{password}, #{name}, #{roles}, #{isAccountNonExpired}, #{isAccountNonLocked}, #{isCredentialsNonExpired}, #{isEnabled})
 </insert>
 
     <insert id="createAuthority" parameterType="org.springframework.security.core.GrantedAuthority">
         INSERT INTO authority (username, authority_name)
         VALUES
-        <foreach item="authority" index="index" collection="authorities" separator=",">
-            (#{username}, #{authority})
+        <foreach item="item" index="index" collection="authorities" separator=",">
+            (#{username}, #{item.authority})
         </foreach>
     </insert>
 

@@ -23,7 +23,7 @@ public class HelloSpringBootController {
         return "hello";
     }
 
-    @GetMapping(value = "/getNow")
+    @GetMapping(value = "/user/getNow")
     public String getServerTime() {
         return accountMapper.getTime();
     }
