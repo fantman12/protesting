@@ -37,9 +37,6 @@ public class UserController {
         UsernamePasswordAuthenticationToken toekn = new UsernamePasswordAuthenticationToken(username, password);
         Authentication authentication = authenticationManager.authenticate(toekn);
 
-//        System.out.println("!!!");
-//        System.out.println(authentication);
-
         // Security Context Holder에 저장후 추후 뺼수 있음
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
@@ -49,22 +46,6 @@ public class UserController {
         User user = userService.readUser(username); // UserDetailsService의 readUser 활용
         // Jwt 형태
         String jwt = jwtUtils.createToken(username, user.getRoles());
-
-
-        System.out.println(user.getAuthorities());
-
-
-//        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-//        Boolean istrue = authorities.stream().filter(o -> o.getAuthority().equals("ROLE_USER")).findAny().isPresent();
-
-
-//        System.out.println(istrue);
-
-
-
-        // Session 유지 형태
-        // return new AuthenticationToken(user.getName(), user.getAuthorities(), session.getId());
-
         // Jwt 리턴 구조 형태
         return new AuthenticationToken(user.getName(), user.getAuthorities(), jwt);
     }

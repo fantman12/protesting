@@ -13,31 +13,15 @@ import redis.clients.jedis.JedisPoolConfig;
 import redis.clients.jedis.JedisPubSub;
 
 @RestController
-public class HelloSpringBootController {
+public class PongTestController {
 
     @Autowired
     private AccountMapper accountMapper;
 
-    @RequestMapping(value="/hello")
-    public String hellSpringBoot() {
-        return "hello";
-    }
-
-    @GetMapping(value = "/user/getNow")
-    public String getServerTime() {
-        return accountMapper.getTime();
-    }
-
-
-    @GetMapping(value = "/getAccount")
-    public Object getAccount(@RequestParam(value = "id") String id) {
-        return accountMapper.getUser(id);
-    }
-
     @GetMapping("/targetPing/{seq}")
     public void pubPing(@PathVariable("seq") String seq) {
         Jedis jedis = new RedisUtil().getInstance();
-        jedis.publish("tping", seq);
+        jedis.publish("TPing", seq);
 
         jedis.close();
     }

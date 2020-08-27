@@ -62,28 +62,8 @@ public class ProtestingApplication implements CommandLineRunner {
                 Smessage = message;
 
                 SetJedis.hset(Schannel, Smessage, "data init");
-            }}, "tping"
+            }}, "TPing"
         );
-
-
-        // DB X
-        // Reids HASH key 1 value 2 subValue
-        // DB Connection
-
-        // Reids HASH key 1 value 2 subValue 1번 유저 2번 유저
-        // HASH ( 모호 )
-        // 게임이 진행되가면서 데이터 1번 유저 2번 유저 ~~~~ 데이터 결과를 내야되잔아
-
-        // 결과를 정리어케하지 존나 어렵네
-
-        // 오목 1 유저 2 유저~~
-        // 33 34 1유저 이겻어
-        // 간단?
-        // ?
-
-
-
-
         jedis.close();
     }
 }
