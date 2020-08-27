@@ -34,18 +34,9 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
                                     FilterChain chain) throws IOException, ServletException {
 
         Principal tt = request.getUserPrincipal();
-        System.out.println(tt);
-        System.out.println("!@@@");
 
-
-
-        System.out.println("1231231");
-        // 헤더에서 JWT 를 받아옵니다.
+        // 헤더에서 JWT get
         String token = getAuthentication((HttpServletRequest) request);
-
-        System.out.println(token);
-
-        // 유효한 토큰인지 확인합니다.
         if (token != null && jwtUtils.validateToken(token)) {
             Authentication authentication = jwtUtils.getAuthentication(token);
 
@@ -64,11 +55,6 @@ public class JwtAuthenticationFilter extends BasicAuthenticationFilter {
         if (Strings.isEmpty(token)) {
             return null;
         }
-
-        System.out.println(token);
-//        Claims claims = jwtUtils.getClaims(token.substring("Bearer ".length()));
-
-        System.out.println(request);
         String resolveToken = jwtUtils.resolveToken((HttpServletRequest) request);
 
         return token;

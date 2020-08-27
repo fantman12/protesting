@@ -97,23 +97,14 @@ public class JwtUtils {
 
 
         try {
-            System.out.println("@@@@@@@@@@@@@@@@@@@@");
-            System.out.println(secret);
             Jws<Claims> claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(jwtToken);
-            System.out.println("####################");
             return !claims.getBody().getExpiration().before(new Date());
         } catch (Exception e) {
-
-            System.out.println("!!!!!!!!!!!!!!!");
             return false;
         }
     }
 
     public Authentication getAuthentication(String token) {
-
-        System.out.println("SHOW!");
-        System.out.println(this.getUserPk(token));
-
         UserDetails userDetails = userDetailsService.loadUserByUsername(this.getUserPk(token));
         return new UsernamePasswordAuthenticationToken(userDetails, "", userDetails.getAuthorities());
     }

@@ -24,7 +24,7 @@ public class ProtestingApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(ProtestingApplication.class, args);
-//        subPing();
+        subPing();
     }
 
     @Override
@@ -34,10 +34,11 @@ public class ProtestingApplication implements CommandLineRunner {
 
 
     public static void redisConnect() {
+        // Redis Connection Reload 처리부
+        // Pool load 조금 문제있는듯..
         String IP = "localhost";
         int PORT = 6379;
         int TIMEOUT = 1000;
-
 
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         JedisPool jedisPool = new JedisPool(jedisPoolConfig, IP, PORT, TIMEOUT);
@@ -49,6 +50,7 @@ public class ProtestingApplication implements CommandLineRunner {
     }
 
     public static void subPing() {
+        // Instance 2개로 분리함 CrossInstance road 문제발생 수정완료
         Jedis jedis = new RedisUtil().getInstance();
         Jedis SetJedis = new RedisUtil().getInstance();
 
