@@ -18,7 +18,7 @@ public class PongTestController {
     @Autowired
     private AccountMapper accountMapper;
 
-    @GetMapping("/targetPing/{test}")
+    @GetMapping("/targetPing/{vvvvvv}")
     public void pubPing(@PathVariable("seq") String seq) {
         Jedis jedis = new RedisUtil().getInstance();
         jedis.publish("TPingsdfsdfsdfsd", seq);
