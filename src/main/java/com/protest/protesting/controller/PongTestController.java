@@ -26,7 +26,7 @@ public class PongTestController {
         jedis.close();
     }
 
-    @GetMapping("/tesing/hget/{channel}/{key}/qq")
+    @GetMapping("/tesing/hget/{channel}/{key}/qq/vvvv")
     public Object testingData(@PathVariable("channel") String channel, @PathVariable("key") String key) {
         Jedis jedis = new RedisUtil().getInstance();
 
